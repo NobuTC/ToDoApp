@@ -26,10 +26,11 @@ body {
 
 .listing {
     margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .item {
-    background-color: #F8EDEB;
+    background-color: #FCD5CE;
     padding: 10px;
     border-radius: 6px;
     display: block;
@@ -38,18 +39,23 @@ body {
 
 
 .item:hover {
-    background-color: #FCD5CE;
+    background-color: #F8EDEB;
 }
 
 #createTodo {
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid #F8EDEB;
+    border: 1px solid #FCD5CE;
 }
 
-#createToDoButton {
+.my-button {
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #F8EDEB;
     background-color: #FFB5A7;
+    text-transform: uppercase;
+}
+
+.my-button:hover {
+    background-color: #F8EDEB;
 }
