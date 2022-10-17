@@ -1,3 +1,55 @@
-h1 {
-    color: aqua;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding-top: 50px;
+    min-height: 100vh;
+    background: rgb(255, 181, 167);
+    background: linear-gradient(180deg, rgba(255, 181, 167, 1) 0%, rgba(252, 213, 206, 1) 35%, rgba(254, 200, 154, 1) 100%);
+}
+
+#wrapper {
+    background: white;
+    width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 24px;
+    border-radius: 5px;
+    box-shadow: 1px 0 10px rgb(136 136 136 / 53%);
+}
+
+.listing {
+    margin-top: 15px;
+}
+
+.item {
+    background-color: #F8EDEB;
+    padding: 10px;
+    border-radius: 6px;
+    display: block;
+    margin: 4px 0;
+}
+
+
+.item:hover {
+    background-color: #FCD5CE;
+}
+
+#createTodo {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #F8EDEB;
+}
+
+#createToDoButton {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #F8EDEB;
+    background-color: #FFB5A7;
 }
