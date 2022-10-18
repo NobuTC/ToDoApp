@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="app.js"></script>
     <link rel="stylesheet" href="styles.css">
     <title>Todo App</title>
 </head>
@@ -14,38 +13,18 @@
     <div id="wrapper">
         <h1>Todo App</h1>
 
-        <form>
-            <input type="text" id="createTodo" placeholder="Type new todo">
+        <form id="myForm">
+
+            <input type="text" id="createTodo" name="createTodo" placeholder="Type new todo">
+
             <button class="my-button"> Add </button>
+            <p class="warning-text" id="warningText">Write more than 5 characters</p>
         </form>
 
-        <ul class="listing">
-            <li class="item item--done">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Buy seal plushie
-            </li>
-            <li class="item">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Read romance book
-            </li>
-            <li class="item">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Hang out with yours friends
-            </li>
-            <li class="item">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Spend time with yours family
-            </li>
-            <li class="item">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Play video games
-            </li>
-            <li class="item">
-                <input type="checkbox" id="1" class="item-checkbox" />
-                Go to gym
-            </li>
-        </ul>
-        <button class="my-button delete-btn">
+
+        <ul class="listing" id="todoList"></ul>
+
+        <button class="my-button delete-btn" id="clearSelectedBtn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                 viewBox="0 0 16 16">
                 <path
@@ -54,9 +33,12 @@
                     d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
             </svg>
         </button>
-        <button class="my-button"> Clear all</button>
+        <button class="my-button" id="clearAll"> Clear all</button>
+
+
     </div>
 
+    <script src="app.js"></script>
 
 </body>
 
