@@ -25,6 +25,7 @@ body {
 }
 
 .listing {
+    padding-left: 0;
     margin-top: 15px;
     margin-bottom: 20px;
 }
@@ -58,4 +59,8 @@ body {
 
 .my-button:hover {
     background-color: #F8EDEB;
+}
+
+.item-checkbox {
+    margin-right: 8px;
 }
