@@ -30,17 +30,27 @@ body {
     margin-bottom: 20px;
 }
 
+
 .item {
     background-color: #FCD5CE;
     padding: 10px;
     border-radius: 6px;
     display: block;
     margin: 4px 0;
+    cursor: pointer;
+    transition: 0.25s all ease;
+
 }
 
 
 .item:hover {
     background-color: #F8EDEB;
+}
+
+.item--done {
+    text-decoration: line-through;
+    background-color: #cbffa4;
+    color:
 }
 
 #createTodo {
