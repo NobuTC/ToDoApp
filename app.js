@@ -1,65 +1,4 @@
-function generateRandomNumber() {
-  const timeNow = new Date().getTime();
-  return timeNow + Math.floor(Math.random() * 1000000);
-}
-
-class Todo {
-  todoArray = [];
-
-  constructor() {}
-
-  createTodo(text) {
-    const id = generateRandomNumber();
-    this.todoArray.push({ id, text, done: false });
-    this.saveToLocalStorage();
-  }
-
-  toggleDone(id) {
-    // find the todo from todoArray by Id
-    const todo = this.todoArray.find((todo) => {
-      // because id is string
-      // so we need to convert string to integer by parseInt()
-      return todo.id === parseInt(id);
-    });
-
-    // if we found it
-    if (todo) {
-      // change false -> true, if true -> false
-      todo.done = !todo.done;
-    }
-    this.saveToLocalStorage();
-  }
-
-  removeTodo(id) {
-    var index = this.todoArray
-      .map((x) => {
-        return x.id;
-      })
-      .indexOf(parseInt(id));
-
-    this.todoArray.splice(index, 1);
-
-    this.saveToLocalStorage();
-  }
-
-  getValueFromStorage() {
-    this.todoArray = JSON.parse(localStorage.getItem("myTodo")) || [];
-  }
-
-  saveToLocalStorage() {
-    localStorage.setItem("myTodo", JSON.stringify(this.todoArray || []));
-  }
-
-  getAllTodos() {
-    return this.todoArray;
-  }
-
-  clearAll() {
-    this.todoArray.length = 0;
-    this.saveToLocalStorage();
-  }
-}
-
+// TODO is from todo.js
 const myTodo = new Todo();
 myTodo.getValueFromStorage();
 
@@ -95,12 +34,13 @@ function insertToDosToHTML() {
   // Empty everything inside <ul> to create HTML again
   myList.innerHTML = "";
 
+  // I loop through every single todo
   allTodo.forEach((todo) => {
     // Insert into the <ul>(#todoList)) this string HTML
     myList.insertAdjacentHTML(
       "beforeend",
       `
-      <li class="item ${todo.done ? "item--done" : ""}" data-key="${
+      <li class="item${todo.done ? " item--done" : ""}" data-key="${
         todo.id
       }" onclick="onClickTodo(this)">
            <input type="checkbox" value="${todo.id}" class="item-checkbox" />
@@ -112,19 +52,24 @@ function insertToDosToHTML() {
 }
 
 function onSubmit(event) {
+  // It prevent from refreshing (stop reloading)
   event.preventDefault();
+  // it will get any value in this input box (kirjoitus laatikko)
   const myTodoText = myInput.value;
 
-  // Check if Text is not empty
+  // Check if Text is more than 5
   if (myTodoText.length > 5) {
     // Add new todo
     myTodo.createTodo(myTodoText);
     myForm.reset();
     insertToDosToHTML();
+    // hide error message
     warningText.style.display = "none";
+    myInput.className = "";
   } else {
-    // length is empty
+    // length is less than 5 or empty
     myInput.className = "input-error";
+    // show the error message
     warningText.style.display = "block";
   }
 }
