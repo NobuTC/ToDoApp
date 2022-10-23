@@ -1,7 +1,4 @@
-// TODO is from todo.js
-const myTodo = new Todo();
-myTodo.getValueFromStorage();
-
+// Select all elements in the DOM
 const myForm = document.querySelector("#myForm");
 const myInput = document.querySelector("#createTodo");
 const myList = document.querySelector("#todoList");
@@ -9,8 +6,44 @@ const clearAll = document.querySelector("#clearAll");
 const selectedBtn = document.querySelector("#clearSelectedBtn");
 const warningText = document.querySelector("#warningText");
 
+// Focus on input box, just make it easier to type
 myInput.focus();
 
+// TODO is from todo.js
+const myTodo = new Todo();
+myTodo.getValueFromStorage();
+insertToDosToHTML();
+
+function insertToDosToHTML() {
+  // Get all the todos from todo Array
+  const allTodo = myTodo.getAllTodos();
+
+  // Empty everything inside <ul> to create HTML again
+  myList.innerHTML = "";
+
+  // I loop through every single todo
+  // first time, array of todo is empty so this won't run []
+
+  allTodo.forEach((todo) => {
+    // Insert into the <ul>(#todoList)) this string HTML
+    let itemDoneClass = "";
+    if (todo.done) {
+      itemDoneClass = "item--done";
+    }
+
+    myList.insertAdjacentHTML(
+      "beforeend",
+      `
+      <li class="item ${itemDoneClass}" data-key="${todo.id}" onclick="onClickTodo(this)">
+           <input type="checkbox" value="${todo.id}" class="item-checkbox" />
+           ${todo.text}
+      </li>
+      `
+    );
+  });
+}
+
+// element is <li class="item" data-key="1231232323"></li>
 function onClickTodo(element) {
   // get the item ID
   const todoID = element.getAttribute("data-key");
@@ -27,29 +60,8 @@ function onClickTodo(element) {
   myTodo.toggleDone(todoID);
 }
 
-function insertToDosToHTML() {
-  // Get all the todos from todo Array
-  const allTodo = myTodo.getAllTodos();
-
-  // Empty everything inside <ul> to create HTML again
-  myList.innerHTML = "";
-
-  // I loop through every single todo
-  allTodo.forEach((todo) => {
-    // Insert into the <ul>(#todoList)) this string HTML
-    myList.insertAdjacentHTML(
-      "beforeend",
-      `
-      <li class="item${todo.done ? " item--done" : ""}" data-key="${
-        todo.id
-      }" onclick="onClickTodo(this)">
-           <input type="checkbox" value="${todo.id}" class="item-checkbox" />
-           ${todo.text}
-      </li>
-      `
-    );
-  });
-}
+// When form is submitted, then we call onSubmit function
+myForm.addEventListener("submit", onSubmit);
 
 function onSubmit(event) {
   // It prevent from refreshing (stop reloading)
@@ -74,10 +86,16 @@ function onSubmit(event) {
   }
 }
 
+// When user clicks on the clear all button
+clearAll.addEventListener("click", onClearAll);
+
 function onClearAll() {
   myTodo.clearAll();
   insertToDosToHTML();
 }
+
+// when user click on selected item button
+selectedBtn.addEventListener("click", onClickSelectedBtn);
 
 function onClickSelectedBtn() {
   const selectedInputs = document.querySelectorAll(".item-checkbox:checked");
@@ -88,19 +106,9 @@ function onClickSelectedBtn() {
   for (var i = 0; i <= selectedInputs.length; i++) {
     const element = selectedInputs[i];
     if (element) {
-      myTodo.removeTodo(element.value);
+      const myId = element.value; // 1666553383123456 for example
+      myTodo.removeTodo(myId);
     }
   }
   insertToDosToHTML();
 }
-
-// When form is submitted, then we call onSubmit function
-myForm.addEventListener("submit", onSubmit);
-
-// When user clicks on the clear all button
-clearAll.addEventListener("click", onClearAll);
-
-// when user click on selected item button
-selectedBtn.addEventListener("click", onClickSelectedBtn);
-
-insertToDosToHTML();
